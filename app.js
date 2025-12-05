@@ -1,6 +1,6 @@
-const express = require("express");
+const express = require("express");  
 const cors = require("cors");
-const bodyParser = require("body-parser");
+const bodyParser = require("body-parser");  
 
 const app = express(); 
 
@@ -13,7 +13,7 @@ const categoryRoutes = require("./routes/addcategoryroute");
 const menuRoutes = require("./routes/menuroute");
 const menucontextRoutes = require("./routes/menucontextsroute");
 const menuitemsRoutes = require("./routes/menuitemsroute");
-const menuinvoiceRoutes = require("./routes/menuinvoiceroute");
+const menuinvoiceRoutes = require("./routes/menuinvoiceroute");  
 const menucategoriesRoutes = require("./routes/menucategoriesroute");
 
 const menupdfinvoiceRoutes = require("./routes/menupdfinvoiceroute");
@@ -42,7 +42,7 @@ app.use('/api/menuitems', menuitemsRoutes);
 app.use('/api/menuinvoice', menuinvoiceRoutes);
 app.use('/api/menucategories', menucategoriesRoutes);
 
-app.use('/api/menupdfinvoice',menupdfinvoiceRoutes)
+app.use('/api/menupdfinvoice',menupdfinvoiceRoutes);
 
 
 
