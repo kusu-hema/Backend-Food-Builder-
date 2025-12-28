@@ -14,25 +14,25 @@ class MenuInvoiceModel{
         return rows[0];
     }
     
-    async createMenuInvoice ({ menu_id, subtotal,gst, grand_total, advance, balance, lead_counters, water_bottles, cooking_charges, labour_charges, transport_charges })
+    async createMenuInvoice ({ menu_id, subtotal,gst, grand_total, advance, balance, lead_counters, water_bottles, cooking_charges, labour_charges, transport_charges, price, total })
     {
-       const query= `INSERT INTO invoices (menu_id, subtotal, gst, grand_total, advance, balance, lead_counters, water_bottles, cooking_charges, labour_charges, transport_charges)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+       const query= `INSERT INTO invoices (menu_id, subtotal, gst, grand_total, advance, balance, lead_counters, water_bottles, cooking_charges, labour_charges, transport_charges, price, total)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13 )
        RETURNING*; `;
-       const values = [menu_id, subtotal, gst, grand_total, advance, balance, lead_counters, water_bottles, cooking_charges, labour_charges, transport_charges];
+       const values = [menu_id, subtotal, gst, grand_total, advance, balance, lead_counters, water_bottles, cooking_charges, labour_charges, transport_charges, price, total];
        const { rows } = await pool.query(query, values);
        return rows[0];
     }
     
 
-    async updateMenuInvoice (id ,  { menu_id, subtotal, gst, grand_total,advance,balance,lead_counters,water_bottles, cooking_charges,labour_charges, transport_charges }) {
+    async updateMenuInvoice (id ,  { menu_id, subtotal, gst, grand_total,advance,balance,lead_counters,water_bottles, cooking_charges,labour_charges, transport_charges, price, total }) {
        const query = `
        UPDATE invoices 
-       SET menu_id = $1, subtotal = $2, gst = $3, grand_total = $4, advance = $5, balance = 6, lead_counters = $7, water_bottles = $8, cooking_charges =, $9, labour_charges = $10, transport_charges =$ 11
-       WHERE ID = $12
+       SET menu_id = $1, subtotal = $2, gst = $3, grand_total = $4, advance = $5, balance = 6, lead_counters = $7, water_bottles = $8, cooking_charges = $9, labour_charges = $10, transport_charges =$ 11,  price= $12, total = $13
+       WHERE ID = $12 
        RETURNING * ;
        `;
-       const values = [ menu_id, subtotal, gst, grand_total, advance, balance, lead_counters, water_bottles, cooking_charges, labour_charges, transport_charges, id];
+       const values = [ menu_id, subtotal, gst, grand_total, advance, balance, lead_counters, water_bottles, cooking_charges, labour_charges, transport_charges, price, total,  id];
        const { rows } = await pool.query(query, values);
        return rows [0];
     }

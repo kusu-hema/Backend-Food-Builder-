@@ -106,7 +106,47 @@
 //   created_at TIMESTAMP DEFAULT now()
 // );
 
-                                                                                                                        
+
+// Added price and total fields in invoice
+
+// CREATE TABLE IF NOT EXISTS invoices (
+//   id SERIAL PRIMARY KEY,
+//   menu_id INT REFERENCES menus(id) ON DELETE CASCADE,
+//   subtotal NUMERIC(12,2) DEFAULT 0,
+//   gst NUMERIC(12,2) DEFAULT 0,
+//   grand_total NUMERIC(12,2) DEFAULT 0,
+//   advance NUMERIC(12,2) DEFAULT 0,
+//   balance NUMERIC(12,2) DEFAULT 0,
+//   lead_counters NUMERIC(12,2) DEFAULT 0,
+//   water_bottles NUMERIC(12,2) DEFAULT 0,
+//   cooking_charges NUMERIC(12,2) DEFAULT 0,
+//   labour_charges NUMERIC(12,2) DEFAULT 0,
+//   transport_charges NUMERIC(12,2) DEFAULT 0,
+//   price NUMERIC(12,2) DEFAULT 0,
+//   total NUMERIC(12,2) DEFAULT 0,
+//   created_at TIMESTAMP DEFAULT now()
+// );
+
+
+// ALTER TABLE invoices
+// ADD COLUMN price NUMERIC(12,2) DEFAULT 0,
+// ADD COLUMN total NUMERIC(12,2) DEFAULT 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // CREATE INDEX IF NOT EXISTS idx_menu_date ON menus(date);
 // CREATE INDEX IF NOT EXISTS idx_context_menu ON menu_contexts(menu_id);
 // CREATE INDEX IF NOT EXISTS idx_cat_context ON menu_categories(context_id);
