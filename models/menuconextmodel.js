@@ -19,27 +19,27 @@ class MenuContextModel {
   }
 
   //  Create new menu
-  async updateMenuContext({ menu_id, event_date, meal, members, buffet  }) {
+  async updateMenuContext({ menu_id, event_date, meal,  members, buffet, price, total }) {
     // Insert a new record using the new column names
     const query = `
-      INSERT INTO menu_contexts ( menu_id, event_date, meal, members, buffet )
-      VALUES ($1, $2, $3, $4, $5)
+      INSERT INTO menu_contexts ( menu_id, event_date, meal, members, buffet, price, total )
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
       RETURNING *;
     `;
-    const values = [ menu_id, event_date, meal, members, buffet];
+    const values = [ menu_id, event_date, meal, members, buffet, price, total ];
     const { rows } = await pool.query(query, values);
     return rows[0];
   }
 
   // Update existing menu by ID
-  async updateMenuContextById(id, {  menu_id, event_date, meal, members, buffet }) {
+  async updateMenuContextById(id, {  menu_id, event_date, meal, members, buffet, price, total }) {
     const query = `
       UPDATE menu_contexts 
-      SET menu_id = $1, event_date = $2, meal = $3, members = $4, buffet = $5
-      WHERE id = $6
+      SET menu_id = $1, event_date = $2, meal = $3, members = $4, buffet = $5, price = $6, total = $7
+      WHERE id = $8
       RETURNING *;
     `;
-    const values = [menu_id, event_date, meal, members, buffet, id ];
+    const values = [menu_id, event_date, meal, members, buffet, price, total, id ];
     const { rows } = await pool.query(query, values);
     return rows[0];
   }
