@@ -1,5 +1,5 @@
 const model = require('../models/addproductmodel'); 
-const db = require('../config/dbconn');
+// const db = require('../config/dbconn');
 
 
 // Get all products
