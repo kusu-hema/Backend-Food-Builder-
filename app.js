@@ -8,6 +8,7 @@ const app = express();
 const customerRoutes = require("./routes/authroute");
 const productRoutes = require("./routes/addproductroute");
 const categoryRoutes = require("./routes/addcategoryroute"); 
+const addmaincategoryroute = require("./routes/addmaincategoryroute");
 
 // INVOICE API 
 const menuRoutes = require("./routes/menuroute");
@@ -15,6 +16,7 @@ const menucontextRoutes = require("./routes/menucontextsroute");
 const menuitemsRoutes = require("./routes/menuitemsroute");
 const menuinvoiceRoutes = require("./routes/menuinvoiceroute");  
 const menucategoriesRoutes = require("./routes/menucategoriesroute");
+
 
 const menupdfinvoiceRoutes = require("./routes/menupdfinvoiceroute");
 
@@ -33,7 +35,8 @@ app.use('/invoices', express.static('invoices'));
 // Base routes for your 'APIs'
 app.use('/api/customers', customerRoutes);
 app.use('/api/products', productRoutes);
-app.use('/api/categories', categoryRoutes);  
+app.use('/api/categories', categoryRoutes);
+app.use('/api/maincategory', addmaincategoryroute);
 
 // INVOICE API 
 app.use('/api/menus', menuRoutes);
