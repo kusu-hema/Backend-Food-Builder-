@@ -1,4 +1,5 @@
 const model = require ('../models/addmaincategorymodel');
+// const model = require('../models/addproductmodel'); 
 
 
 // Get all Categorys
@@ -19,7 +20,7 @@ const getMainCategoryById = async (req, res) =>{
         res.status (200).json(category);
     }
     catch (error){
-        console.error('Error fetching catergory:', error);
+        console.error('Error fetching category:', error);
         res.status(500).json({ message : 'Internal Server Error '});
     }
 }
@@ -31,7 +32,7 @@ const createMainCategory = async (req, res) => {
         res.status(201).json (newMenu);
     }
     catch (error){
-        console.error('Error creating menu:', error);
+        console.error('Error creating category:', error);
         res.status(500).json ({ message : 'Internal Server Error'});
     }
 }
@@ -41,7 +42,7 @@ const createMainCategory = async (req, res) => {
 const updateMainCategory = async (req, res) => {
     try{
         const updatemaincategory = await model.updateMainCategory (req.params.id, req.body);
-        if (!updatemaincategory) return res.status (404).json ({ message : 'Menu not found'});
+        if (!updatemaincategory) return res.status (404).json ({ message : 'category not found'});
         res.status(200).json (updatemaincategory);
     }
     catch (error){
@@ -70,7 +71,3 @@ module.exports = {
     updateMainCategory, 
     deleteMainCategory,
 };
- 
- 
-
- 
