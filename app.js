@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 
 const app = express(); 
 
+
+
 // Import the new category routes
 const customerRoutes = require("./routes/authroute");
 const productRoutes = require("./routes/addproductroute");
@@ -24,6 +26,9 @@ const menupdfinvoiceRoutes = require("./routes/menupdfinvoiceroute");
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+
+// This line is CRITICAL for the Body tab in Postman to work
+app.use(express.json());
 
 // This is the critical line to serve images from the 'uploads' directory
 app.use('/uploads', express.static('uploads'));

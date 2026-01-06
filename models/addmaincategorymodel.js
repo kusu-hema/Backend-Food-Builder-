@@ -25,16 +25,31 @@ class categoryModel {
         return rows[0];
     }
 
+    // async updateMainCategory (id, {sno, category_name}) {
+    //     const query = `
+    //     UPDATE  categories 
+    //     SET sno = $1, category_name = $2
+    //     WHERE sno = $3
+    //     RETURNING *;
+    //     `;
+    //     const values = [sno, category_name, id];
+    //     const { rows } = await pool.query(query, values);
+    //     return rows [0];
+    // }
+
+
+    // Change this in your categoryModel class
+    
     async updateMainCategory (id, {sno, category_name}) {
         const query = `
-        UPDATE  categories 
+        UPDATE categories 
         SET sno = $1, category_name = $2
-        WHERE sno = $3
+        WHERE id = $3  -- Use id here, not sno
         RETURNING *;
         `;
         const values = [sno, category_name, id];
         const { rows } = await pool.query(query, values);
-        return rows [0];
+        return rows[0];
     }
 
     async deleteMainCategory(id) {

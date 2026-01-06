@@ -26,14 +26,36 @@ const getMainCategoryById = async (req, res) =>{
 }
 
 
+// const createMainCategory = async (req, res) => {
+//     try{
+//         const newMenu = await model. createMainCategory (req.body);
+//         res.status(201).json (newMenu);
+//     }
+//     catch (error){
+//         console.error('Error creating category:', error);
+//         res.status(500).json ({ message : 'Internal Server Error'});
+//     }
+// }
+
+
+
 const createMainCategory = async (req, res) => {
-    try{
-        const newMenu = await model. createMainCategory (req.body);
-        res.status(201).json (newMenu);
+    try {
+        console.log("Data received from frontend:", req.body); // Check your terminal for this!
+
+        const { sno, category_name } = req.body;
+
+        // Validation: Don't even try to call the model if data is missing
+        if (!category_name) {
+            return res.status(400).json({ message: 'category_name is required' });
+        }
+
+        const newMenu = await model.createMainCategory({ sno, category_name });
+        res.status(201).json(newMenu);
     }
-    catch (error){
+    catch (error) {
         console.error('Error creating category:', error);
-        res.status(500).json ({ message : 'Internal Server Error'});
+        res.status(500).json({ message: 'Internal Server Error' });
     }
 }
 
