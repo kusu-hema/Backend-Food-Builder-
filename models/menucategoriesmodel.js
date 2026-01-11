@@ -18,19 +18,47 @@ class MenuContextModel {
     return rows [0];
     }
     
+    // // Create new menu
+    // async createMenuCategories ({ context_id, category_name }) {
+    // // Inserrt a new record using the new column names 
+    // const query = ` 
+    // INSERT INTO menu_categories (context_id, category_name)
+    // VALUES ($1, $2)
+    // RETURNING*;
+    // `;
+    // const values = [context_id, category_name];
+    // const { rows } = await pool.query( query, values);
+    // return rows [0];
+    // }
+    
+
+
     // Create new menu
-    async createMenuCategories ({ context_id, category_name }) {
-    // Inserrt a new record using the new column names 
-    const query = ` 
-    INSERT INTO menu_categories (context_id, category_name)
-    VALUES ($1, $2)
-    RETURNING*;
-    `;
-    const values = [context_id, category_name];
-    const { rows } = await pool.query( query, values);
-    return rows [0];
+    // async createMenuCategories({ context_id, category_name }) {
+    //     // Fix: Added space before *
+    //     const query = ` 
+    //     INSERT INTO menu_categories (context_id, category_name)
+    //     VALUES ($1, $2)
+    //     RETURNING *;
+    //     `;
+    //     const values = [context_id, category_name];
+    //     const { rows } = await pool.query(query, values);
+    //     return rows[0];
+    // }
+
+    async createMenuCategories(data) {
+    // Safety check to prevent the "undefined" destructuring crash
+    if (!data) throw new Error("No data provided to createMenuCategories");
+    
+    const { context_id, category_name } = data; 
+    
+    // Use 'pool' (ensure it is the one imported at the top)
+    const query = 'INSERT INTO menu_categories (context_id, category_name) VALUES ($1, $2) RETURNING *';
+    const result = await pool.query(query, [context_id, category_name]);
+    return result.rows[0];
     }
 
+    
 
     //Update existing menu by ID
     async updateMenuCategories (id , { context_id, category_name }){
@@ -45,12 +73,21 @@ class MenuContextModel {
         return rows [0];
     }
 
-    // Delte a menu 
+    // // Delte a menu 
+    // async deleteMenuCategories(id) {
+    //     const query = 'DELETE FROM menu_contets WHERE id = $1';
+    //     await pool.query(query, [id]);
+    //     return true;
+
+    // }
+
+
+    // Delete a menu 
     async deleteMenuCategories(id) {
-        const query = 'DELETE FROM menu_contets WHERE id = $1';
+        // Fix: Corrected table name typo 'menu_contets'
+        const query = 'DELETE FROM menu_categories WHERE id = $1';
         await pool.query(query, [id]);
         return true;
-
     }
 
 

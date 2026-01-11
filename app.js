@@ -5,7 +5,6 @@ const bodyParser = require("body-parser");
 const app = express(); 
 
 
-
 // Import the new category routes
 const customerRoutes = require("./routes/authroute");
 const productRoutes = require("./routes/addproductroute");
