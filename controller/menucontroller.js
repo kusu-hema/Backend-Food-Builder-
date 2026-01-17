@@ -69,19 +69,39 @@ const createMenu = async (req, res) => {
 };
 
 // Update a menu
+// const updateMenu = async (req, res) => {
+//     try {
+//         const updatedMenu = await model.updateMenu(req.params.id, req.body);
+//         if (!updatedMenu) return res.status(404).json({ message: 'Menu not found' });
+//         res.status(200).json(updatedMenu);
+//     } catch (error) {
+//         if (error.message === 'Phone number already exists') {
+//             return res.status(400).json({ message: error.message });
+//         }
+//         console.error('Error updating menu:', error);
+//         res.status(500).json({ message: 'Internal Server Error' });
+//     }
+// };
+
+
+
+
 const updateMenu = async (req, res) => {
+    const menuId = req.params.id;
+    const data = req.body; // Contains { customer_name, contact, menu_contexts: [...] }
+
     try {
-        const updatedMenu = await model.updateMenu(req.params.id, req.body);
+        const updatedMenu = await model.updateFullMenuTransaction(menuId, data);
         if (!updatedMenu) return res.status(404).json({ message: 'Menu not found' });
-        res.status(200).json(updatedMenu);
+        res.status(200).json({ message: 'Menu and all nested items updated successfully' });
     } catch (error) {
-        if (error.message === 'Phone number already exists') {
-            return res.status(400).json({ message: error.message });
-        }
-        console.error('Error updating menu:', error);
+        console.error('Error updating full menu:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
+
+
+
 
 // Delete a menu
 const deleteMenu = async (req, res) => {

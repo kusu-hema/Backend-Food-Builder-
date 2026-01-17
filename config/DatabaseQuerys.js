@@ -310,6 +310,24 @@
 
 
 
+
+
+
+// -- Run these if you haven't added cascading deletes yet
+// ALTER TABLE menu_contexts 
+// ADD CONSTRAINT fk_menu FOREIGN KEY (menu_id) REFERENCES menus(id) 
+// ON DELETE CASCADE;
+
+// ALTER TABLE menu_categories 
+// ADD CONSTRAINT fk_context FOREIGN KEY (context_id) 
+// REFERENCES menu_contexts(id) ON DELETE CASCADE;
+
+// ALTER TABLE menu_items 
+// ADD CONSTRAINT fk_category FOREIGN KEY (category_id) 
+// REFERENCES menu_categories(id) ON DELETE CASCADE;
+
+
+
 // Invoice .............................................................................//
 
 
