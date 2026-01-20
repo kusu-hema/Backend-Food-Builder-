@@ -1,8 +1,8 @@
-const express = require("express");  
-const cors = require("cors");
-const bodyParser = require("body-parser");  
+const express = require("express");  // Frame  work {middle ware }
+const cors = require("cors");     // Cross-Origin Resource Sharing
+const bodyParser = require("body-parser");  //  handling incoming data in a variety of formats, such as JSON, URL-encoded form data, and raw or text data. - middle ware 
 
-const app = express(); 
+const app = express();  // Frame work
 
 
 // Import the new category routes
