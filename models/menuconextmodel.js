@@ -19,14 +19,36 @@ class MenuContextModel {
   }
 
   //  Create new menu
-  async updateMenuContext({ menu_id, event_date, meal,  members, buffet, price, total }) {
-    // Insert a new record using the new column names
+  // async updateMenuContext({ menu_id, event_date, meal,  members, buffet, price, total }) {
+  //   // Insert a new record using the new column names
+  //   const query = `
+  //     INSERT INTO menu_contexts ( menu_id, event_date, meal, members, buffet, price, total )
+  //     VALUES ($1, $2, $3, $4, $5, $6, $7)
+  //     RETURNING *;
+  //   `;
+  //   const values = [ menu_id, event_date, meal, members, buffet, price, total ];
+  //   const { rows } = await pool.query(query, values);
+  //   return rows[0];
+  // }
+
+
+  // menuconextmodel.js
+  async updateMenuContext({ menu_id, event_date, meal, members, buffet, price, total }) {
     const query = `
       INSERT INTO menu_contexts ( menu_id, event_date, meal, members, buffet, price, total )
       VALUES ($1, $2, $3, $4, $5, $6, $7)
       RETURNING *;
     `;
-    const values = [ menu_id, event_date, meal, members, buffet, price, total ];
+    // Ensure we send numbers, even if the frontend sends a blank string
+    const values = [ 
+      menu_id, 
+      event_date, 
+      meal, 
+      members, 
+      buffet, 
+      Number(price) || 0, 
+      Number(total) || 0 
+    ];
     const { rows } = await pool.query(query, values);
     return rows[0];
   }

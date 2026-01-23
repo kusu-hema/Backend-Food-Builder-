@@ -76,6 +76,7 @@
 //   created_at TIMESTAMP DEFAULT now()
 // );
 
+
 // CREATE TABLE IF NOT EXISTS menu_categories (
 //   id SERIAL PRIMARY KEY,
 //   context_id INT REFERENCES menu_contexts(id) ON DELETE CASCADE,
@@ -325,6 +326,94 @@
 // ALTER TABLE menu_items 
 // ADD CONSTRAINT fk_category FOREIGN KEY (category_id) 
 // REFERENCES menu_categories(id) ON DELETE CASCADE;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
