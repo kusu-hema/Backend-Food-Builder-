@@ -35,7 +35,7 @@ class MenuModel {
                 COALESCE(
                     json_agg(
                         json_build_object(
-                            'context_id', mc.id, 'event_date', mc.event_date, 'meal', mc.meal, 'members', mc.members, 'buffet', mc.buffet,
+                            'context_id', mc.id, 'event_date', mc.event_date, 'meal', mc.meal, 'members', mc.members, 'buffet', mc.buffet, 'price', mc.price, 'total', mc.total, 
                             'categories', (
                                 SELECT COALESCE(
                                     json_agg(
@@ -122,9 +122,9 @@ class MenuModel {
             if (data.menu_contexts && Array.isArray(data.menu_contexts)) {
                 for (const ctx of data.menu_contexts) {
                     const ctxRes = await client.query(
-                        `INSERT INTO menu_contexts (menu_id, event_date, meal, members, buffet) 
-                         VALUES ($1, $2, $3, $4, $5) RETURNING id`,
-                        [menuId, ctx.event_date, ctx.meal, ctx.members, ctx.buffet]
+                        `INSERT INTO menu_contexts (menu_id, event_date, meal, members, buffet, price, total ) 
+                         VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
+                        [menuId, ctx.event_date, ctx.meal, ctx.members, ctx.buffet, ctx.price || 0, ctx.total || 0]
                     );
                     const newContextId = ctxRes.rows[0].id;
 
