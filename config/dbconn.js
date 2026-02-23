@@ -24,5 +24,3 @@ module.exports = pool; //  Export the pool object
 //     port:5433,
 // });
 // module.exports = pool;
-
- 
